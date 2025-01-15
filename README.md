@@ -9,72 +9,72 @@ The main goal is to analyze pizza sales data to extract actionable insights, opt
 ## Features
 **Basic Analysis:z**
 
-Retrieve the total number of orders placed.
+⒈ Retrieve the total number of orders placed.
 
-Calculate total revenue from pizza sales.
+⒉ Calculate total revenue from pizza sales.
 
-Identify the highest-priced pizza.
+⒊ Identify the highest-priced pizza.
 
-Determine the most commonly ordered pizza size.
+⒋ Determine the most commonly ordered pizza size.
 
-List the top 5 most ordered pizza types along with their quantities.
+⒌ List the top 5 most ordered pizza types along with their quantities.
 
-Intermediate Analysis:
+**Intermediate Analysis:**
 
-Perform table joins to determine the total quantity ordered for each pizza category.
+⒈ Perform table joins to determine the total quantity ordered for each pizza category.
 
-Analyze order distribution across different hours of the day.
+⒉ Analyze order distribution across different hours of the day.
 
-Discover category-wise pizza distribution.
+⒊ Discover category-wise pizza distribution.
 
-Group data by date to calculate the daily average number of pizzas ordered.
+⒋ Group data by date to calculate the daily average number of pizzas ordered.
 
-Identify the top 3 pizza types based on revenue.
+⒌ Identify the top 3 pizza types based on revenue.
 
-Advanced Analysis:
+**Advanced Analysis:**
 
-Calculate the percentage contribution of each pizza type to total revenue.
+⒈ Calculate the percentage contribution of each pizza type to total revenue.
 
-Examine cumulative revenue over time.
+⒉ Examine cumulative revenue over time.
 
-Identify the top 3 pizza types contributing to revenue within each category.
+⒊ Identify the top 3 pizza types contributing to revenue within each category.
 
-SQL Techniques Used
-Aggregate Functions: SUM, AVG, COUNT, etc., for deriving totals and averages.
+## SQL Techniques Used
+**Aggregate Functions:** SUM, AVG, COUNT, etc., for deriving totals and averages.
 
-Joins: To combine data from multiple tables and create meaningful relationships.
+**Joins:** To combine data from multiple tables and create meaningful relationships.
 
-Group By: For segmenting data by time, categories, and other dimensions.
+**Group By:** For segmenting data by time, categories, and other dimensions.
 
-Window Functions: For cumulative calculations and ranking.
+**Window Functions:** For cumulative calculations and ranking.
 
-Filtering and Sorting: Using WHERE, HAVING, and ORDER BY clauses for precise querying.
+**Filtering and Sorting:** Using WHERE, HAVING, and ORDER BY clauses for precise querying.
 
-Key Outcomes
+## Key Outcomes
 
-This project enables businesses to:
-Gain deeper insight into customer preferences and purchasing behaviors.
+**This project enables businesses to:**
+⦁ Gain deeper insight into customer preferences and purchasing behaviors.
 
-Optimize inventory and resource management.
+⦁ Optimize inventory and resource management.
 
-Improve overall operational efficiency and profitability.
+⦁ Improve overall operational efficiency and profitability.
 
-Technology Stack
-Database Management System (DBMS): SQL-based relational database.
+## Technology Stack
+⦁ **Database Management System (DBMS):** SQL-based relational database.
 
-Query Language: SQL (Structured Query Language).
+⦁ **Query Language:** SQL (Structured Query Language).
 
-Future Enhancements
-Integration with visualization tools like Tableau or Power BI for graphical insights.
+## Future Enhancements
+⦁ Integration with visualization tools like Tableau or Power BI for graphical insights.
 
-Automation of queries for real-time reporting.
+⦁ Automation of queries for real-time reporting.
 
-Extension to include forecasting models using SQL and machine learning integration.
+⦁ Extension to include forecasting models using SQL and machine learning integration.
 
 
 **Project Title**: Pizza Sales Analysis
 **Level**: Beginner  
-**Database**: `p1_retail_db`
+**Database**: `pizzahut`
 
 This project is designed to demonstrate SQL skills and techniques typically used by data analysts to explore, clean, and analyze pizza sales data. The project involves setting up a pizza sales database, performing exploratory data analysis (EDA), and answering specific business questions through SQL queries. This project is ideal for those who are starting their journey in data analysis and want to build a solid foundation in SQL.
 
