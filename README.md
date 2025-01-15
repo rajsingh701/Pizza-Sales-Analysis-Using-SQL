@@ -108,7 +108,7 @@ CREATE TABLE order_details (
 
 The following SQL queries were developed to answer specific business questions:
 
-1. **Retrieve the total number of orders placed.**:
+1. **Write a SQL query to retrieve the total number of orders placed.**:
 ```sql
 SELECT 
     COUNT(order_id) AS total_order
@@ -116,7 +116,7 @@ FROM
     orders;
 ```
 
-2. **Calculate the total revenue generated from pizza sales.**:
+2. **Write a SQL qurey calculate the total revenue generated from pizza sales.**:
 ```sql
 SELECT 
     ROUND(SUM(order_details.quantity * pizzas.price),
@@ -127,102 +127,164 @@ FROM
     pizzas ON pizzas.pizza_id = order_details.pizza_id;
 ```
 
-3. **Write a SQL query to calculate the total sales (total_sale) for each category.**:
+3. **Write a SQL query to identify the highest-priced pizza.**:
 ```sql
 SELECT 
-    category,
-    SUM(total_sale) as net_sale,
-    COUNT(*) as total_orders
-FROM retail_sales
-GROUP BY 1
+    pizza_types.name, pizzas.price
+FROM
+    pizza_types
+        JOIN
+    pizzas ON pizza_types.pizza_type_id = pizzas.pizza_type_id
+ORDER BY pizzas.price DESC
+LIMIT 1;
 ```
 
-4. **Write a SQL query to find the average age of customers who purchased items from the 'Beauty' category.**:
-```sql
-SELECT
-    ROUND(AVG(age), 2) as avg_age
-FROM retail_sales
-WHERE category = 'Beauty'
-```
-
-5. **Write a SQL query to find all transactions where the total_sale is greater than 1000.**:
-```sql
-SELECT * FROM retail_sales
-WHERE total_sale > 1000
-```
-
-6. **Write a SQL query to find the total number of transactions (transaction_id) made by each gender in each category.**:
+4. **Write a SQL query to identify the most common pizza size ordered.**:
 ```sql
 SELECT 
-    category,
-    gender,
-    COUNT(*) as total_trans
-FROM retail_sales
-GROUP 
-    BY 
-    category,
-    gender
-ORDER BY 1
+    pizzas.size,
+    COUNT(order_details.order_details_id) AS order_count
+FROM
+    pizzas
+        JOIN
+    order_details ON pizzas.pizza_id = order_details.pizza_id
+GROUP BY pizzas.size
+ORDER BY order_count DESC;
 ```
 
-7. **Write a SQL query to calculate the average sale for each month. Find out best selling month in each year**:
+5. **Write a SQL query to list the top 5 most ordered pizza types along with their quantities.**:
 ```sql
 SELECT 
-       year,
-       month,
-    avg_sale
-FROM 
-(    
-SELECT 
-    EXTRACT(YEAR FROM sale_date) as year,
-    EXTRACT(MONTH FROM sale_date) as month,
-    AVG(total_sale) as avg_sale,
-    RANK() OVER(PARTITION BY EXTRACT(YEAR FROM sale_date) ORDER BY AVG(total_sale) DESC) as rank
-FROM retail_sales
-GROUP BY 1, 2
-) as t1
-WHERE rank = 1
+    pizza_types.name, SUM(order_details.quantity) AS quantity
+FROM
+    pizza_types
+        JOIN
+    pizzas ON pizza_types.pizza_type_id = pizzas.pizza_type_id
+        JOIN
+    order_details ON order_details.pizza_id = pizzas.pizza_id
+GROUP BY pizza_types.name
+ORDER BY quantity DESC
+LIMIT 5;
 ```
 
-8. **Write a SQL query to find the top 5 customers based on the highest total sales **:
+6. **Write a SQL query to join the necessary tables to find the total quantity of each pizza category ordered.**:
 ```sql
 SELECT 
-    customer_id,
-    SUM(total_sale) as total_sales
-FROM retail_sales
-GROUP BY 1
-ORDER BY 2 DESC
-LIMIT 5
+    pizza_types.category,
+    SUM(order_details.quantity) AS quantity
+FROM
+    pizza_types
+        JOIN
+    pizzas ON pizza_types.pizza_type_id = pizzas.pizza_type_id
+        JOIN
+    order_details ON order_details.pizza_id = pizzas.pizza_id
+GROUP BY pizza_types.category
+ORDER BY quantity DESC;
 ```
 
-9. **Write a SQL query to find the number of unique customers who purchased items from each category.**:
+7. **Write a SQL query to determine the distribution of orders by hour of the day.**:
 ```sql
 SELECT 
-    category,    
-    COUNT(DISTINCT customer_id) as cnt_unique_cs
-FROM retail_sales
-GROUP BY category
+    HOUR(order_time) AS hour, COUNT(order_id) AS order_count
+FROM
+    orders
+GROUP BY HOUR(order_time);
 ```
 
-10. **Write a SQL query to create each shift and number of orders (Example Morning <12, Afternoon Between 12 & 17, Evening >17)**:
+8. **Write a SQL query to join relevant tables to find the category-wise distribution of pizzas.**:
 ```sql
-WITH hourly_sale
-AS
-(
-SELECT *,
-    CASE
-        WHEN EXTRACT(HOUR FROM sale_time) < 12 THEN 'Morning'
-        WHEN EXTRACT(HOUR FROM sale_time) BETWEEN 12 AND 17 THEN 'Afternoon'
-        ELSE 'Evening'
-    END as shift
-FROM retail_sales
-)
 SELECT 
-    shift,
-    COUNT(*) as total_orders    
-FROM hourly_sale
-GROUP BY shift
+    category, COUNT(name)
+FROM
+    pizza_types
+GROUP BY category;
 ```
+
+9. **Write a SQL query to Group the orders by date and calculate the average number of pizzas ordered per day.**:
+```sql
+SELECT 
+    ROUND(AVG(quantity), 0) AS avg_pizza_ordered_per_day
+FROM
+    (SELECT 
+        orders.order_date, SUM(order_details.quantity) AS quantity
+    FROM
+        orders
+    JOIN order_details ON orders.order_id = order_details.order_id
+    GROUP BY orders.order_date) AS order_quantity;
+```
+
+10. **Write a SQL query to determine the top 3 most ordered pizza types based on revenue.
+**:
+```sql
+SELECT 
+    pizza_types.name,
+    SUM(order_details.quantity * pizzas.price) AS revenue
+FROM
+    pizza_types
+        JOIN
+    pizzas ON pizzas.pizza_type_id = pizza_types.pizza_type_id
+        JOIN
+    order_details ON order_details.pizza_id = pizzas.pizza_id
+GROUP BY pizza_types.name
+ORDER BY revenue DESC
+LIMIT 3;
+```
+
+11. **Write a SQL query to calculate the percentage contribution of each pizza type to total revenue.
+**:
+```sql
+SELECT 
+    pizza_types.category,
+    ROUND(SUM(order_details.quantity * pizzas.price) / (SELECT 
+                    ROUND(SUM(order_details.quantity * pizzas.price),
+                                2) AS total_sales
+                FROM
+                    order_details
+                        JOIN
+                    pizzas ON pizzas.pizza_id = order_details.pizza_id) * 100,
+            2) AS revenue
+FROM
+    pizza_types
+        JOIN
+    pizzas ON pizza_types.pizza_type_id = pizzas.pizza_type_id
+        JOIN
+    order_details ON order_details.pizza_id = pizzas.pizza_id
+GROUP BY pizza_types.category
+ORDER BY revenue DESC;
+```
+
+12. **Write a SQL query to analyze the cumulative revenue generated over time.
+**:
+```sql
+select order_date,
+sum(revenue) over(order by order_date) as cum_revenue 
+from 
+(select orders.order_date,
+sum(order_details.quantity * pizzas.price) as revenue 
+from order_details join pizzas 
+on order_details.pizza_id = pizzas.pizza_id
+join orders
+on orders.order_id = order_details.order_id
+group by orders.order_date) as sales;
+```
+
+13. **Write a SQL query to determine the top 3 most ordered pizza types based on revenue for each pizza category.
+**:
+```sql
+select name, revenue from 
+(select category, name, revenue,
+rank() over(partition by category order by revenue desc) as rn
+from
+(select pizza_types.category, pizza_types.name,
+sum((order_details.quantity) * pizzas.price) as revenue 
+from pizza_types join pizzas
+on pizza_types.pizza_type_id = pizzas.pizza_type_id
+join order_details
+on order_details.pizza_id = pizzas.pizza_id
+group by pizza_types.category, pizza_types.name) as a) as b
+where rn <= 3;
+```
+
 
 ## Findings
 
