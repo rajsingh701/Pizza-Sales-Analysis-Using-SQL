@@ -49,7 +49,7 @@ The main goal is to analyze pizza sales data to extract actionable insights, opt
 **Window Functions:** For cumulative calculations and ranking.
 
 **Filtering and Sorting:** Using WHERE, HAVING, and ORDER BY clauses for precise querying.
-
+## 
 
 ## Key Outcomes
 **This project enables businesses to:**
