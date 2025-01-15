@@ -1,19 +1,83 @@
-# Retail Sales Analysis SQL Project
+# Pizza Sales Analysis Using SQL
 
-## Project Overview
+## Overview
+This project explores the dynamic world of pizza sales through data analysis using SQL. By harnessing the power of structured queries, we aim to uncover valuable insights into sales patterns, customer preferences, and operational efficiencies in the pizza industry.
 
-**Project Title**: Retail Sales Analysis  
+## Objective
+The main goal is to analyze pizza sales data to extract actionable insights, optimize business processes, and improve decision-making. This includes exploring trends in revenue, customer preferences, and pizza performance across various dimensions.
+
+## Features
+**Basic Analysis:z**
+
+Retrieve the total number of orders placed.
+
+Calculate total revenue from pizza sales.
+
+Identify the highest-priced pizza.
+
+Determine the most commonly ordered pizza size.
+
+List the top 5 most ordered pizza types along with their quantities.
+
+Intermediate Analysis:
+
+Perform table joins to determine the total quantity ordered for each pizza category.
+
+Analyze order distribution across different hours of the day.
+
+Discover category-wise pizza distribution.
+
+Group data by date to calculate the daily average number of pizzas ordered.
+
+Identify the top 3 pizza types based on revenue.
+
+Advanced Analysis:
+
+Calculate the percentage contribution of each pizza type to total revenue.
+
+Examine cumulative revenue over time.
+
+Identify the top 3 pizza types contributing to revenue within each category.
+
+SQL Techniques Used
+Aggregate Functions: SUM, AVG, COUNT, etc., for deriving totals and averages.
+
+Joins: To combine data from multiple tables and create meaningful relationships.
+
+Group By: For segmenting data by time, categories, and other dimensions.
+
+Window Functions: For cumulative calculations and ranking.
+
+Filtering and Sorting: Using WHERE, HAVING, and ORDER BY clauses for precise querying.
+
+Key Outcomes
+
+This project enables businesses to:
+Gain deeper insight into customer preferences and purchasing behaviors.
+
+Optimize inventory and resource management.
+
+Improve overall operational efficiency and profitability.
+
+Technology Stack
+Database Management System (DBMS): SQL-based relational database.
+
+Query Language: SQL (Structured Query Language).
+
+Future Enhancements
+Integration with visualization tools like Tableau or Power BI for graphical insights.
+
+Automation of queries for real-time reporting.
+
+Extension to include forecasting models using SQL and machine learning integration.
+
+
+**Project Title**: Pizza Sales Analysis
 **Level**: Beginner  
 **Database**: `p1_retail_db`
 
-This project is designed to demonstrate SQL skills and techniques typically used by data analysts to explore, clean, and analyze retail sales data. The project involves setting up a retail sales database, performing exploratory data analysis (EDA), and answering specific business questions through SQL queries. This project is ideal for those who are starting their journey in data analysis and want to build a solid foundation in SQL.
+This project is designed to demonstrate SQL skills and techniques typically used by data analysts to explore, clean, and analyze pizza sales data. The project involves setting up a pizza sales database, performing exploratory data analysis (EDA), and answering specific business questions through SQL queries. This project is ideal for those who are starting their journey in data analysis and want to build a solid foundation in SQL.
 
-## Objectives
-
-1. **Set up a retail sales database**: Create and populate a retail sales database with the provided sales data.
-2. **Data Cleaning**: Identify and remove any records with missing or null values.
-3. **Exploratory Data Analysis (EDA)**: Perform basic exploratory data analysis to understand the dataset.
-4. **Business Analysis**: Use SQL to answer specific business questions and derive insights from the sales data.
 
 ## Project Structure
 
@@ -70,11 +134,12 @@ WHERE
 
 The following SQL queries were developed to answer specific business questions:
 
-1. **Write a SQL query to retrieve all columns for sales made on '2022-11-05**:
+1. **Retrieve the total number of orders placed.**:
 ```sql
-SELECT *
-FROM retail_sales
-WHERE sale_date = '2022-11-05';
+SELECT 
+    COUNT(order_id) AS total_order
+FROM
+    orders;
 ```
 
 2. **Write a SQL query to retrieve all transactions where the category is 'Clothing' and the quantity sold is more than 4 in the month of Nov-2022**:
