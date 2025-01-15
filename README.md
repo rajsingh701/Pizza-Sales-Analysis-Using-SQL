@@ -5,6 +5,18 @@ This project explores the dynamic world of pizza sales through data analysis usi
 
 ## Objective
 The main goal is to analyze pizza sales data to extract actionable insights, optimize business processes, and improve decision-making. This includes exploring trends in revenue, customer preferences, and pizza performance across various dimensions.
+## Feature
+**Basic Analysis:**
+
+⒈ Retrieve the total number of orders placed.
+
+⒉ Calculate total revenue from pizza sales.
+
+⒊ Identify the highest-priced pizza.
+
+⒋ Determine the most commonly ordered pizza size.
+
+⒌ List the top 5 most ordered pizza types along with their quantities.
 
 **Intermediate Analysis:**
 
@@ -26,38 +38,6 @@ The main goal is to analyze pizza sales data to extract actionable insights, opt
 
 ⒊ Identify the top 3 pizza types contributing to revenue within each category.
 
-## SQL Techniques Used
-**Aggregate Functions:** SUM, AVG, COUNT, etc., for deriving totals and averages.
-
-**Joins:** To combine data from multiple tables and create meaningful relationships.
-
-**Group By:** For segmenting data by time, categories, and other dimensions.
-
-**Window Functions:** For cumulative calculations and ranking.
-
-**Filtering and Sorting:** Using WHERE, HAVING, and ORDER BY clauses for precise querying.
-
-## Key Outcomes
-
-**This project enables businesses to:**
-⦁ Gain deeper insight into customer preferences and purchasing behaviors.
-
-⦁ Optimize inventory and resource management.
-
-⦁ Improve overall operational efficiency and profitability.
-
-## Technology Stack
-⦁ **Database Management System (DBMS):** SQL-based relational database.
-
-⦁ **Query Language:** SQL (Structured Query Language).
-
-## Future Enhancements
-⦁ Integration with visualization tools like Tableau or Power BI for graphical insights.
-
-⦁ Automation of queries for real-time reporting.
-
-⦁ Extension to include forecasting models using SQL and machine learning integration.
-
 ## 
 **Project Title**: Pizza Sales Analysis
 
@@ -74,8 +54,8 @@ This project is designed to demonstrate SQL skills and techniques typically used
 ### 1. Database Setup
 
 - **Database Creation**: The project starts by creating a database named `pizzahut`.
-- **Table Creation**: A table named `order_details`` is created to store the sales data. The table structure includes columns for
-
+- **Table Creation**: A table named `order_details`` is created to store the sales data. The table structure includes columns for order_details_id, order_id, pizza_id, quantity.
+ 
 ```sql
 CREATE DATABASE pizzahut;
 
@@ -94,18 +74,6 @@ CREATE TABLE order_details (
 ### 2. Data Analysis & Findings
 
 The following SQL queries were developed to answer specific business questions:
-**Basic Analysis:**
-
-⒈ Retrieve the total number of orders placed.
-
-⒉ Calculate total revenue from pizza sales.
-
-⒊ Identify the highest-priced pizza.
-
-⒋ Determine the most commonly ordered pizza size.
-
-⒌ List the top 5 most ordered pizza types along with their quantities.
-
 
 1. **Write a SQL query to retrieve the total number of orders placed.**:
 ```sql
@@ -284,15 +252,40 @@ group by pizza_types.category, pizza_types.name) as a) as b
 where rn <= 3;
 ```
 
+## SQL Techniques Used
+**Aggregate Functions:** SUM, AVG, COUNT, etc., for deriving totals and averages.
 
-## Reports
+**Joins:** To combine data from multiple tables and create meaningful relationships.
 
-- **Sales Summary**: A detailed report summarizing total sales, customer demographics, and category performance.
-- **Trend Analysis**: Insights into sales trends across different months and shifts.
-- **Customer Insights**: Reports on top customers and unique customer counts per category.
+**Group By:** For segmenting data by time, categories, and other dimensions.
 
-## Conclusion
+**Window Functions:** For cumulative calculations and ranking.
 
+**Filtering and Sorting:** Using WHERE, HAVING, and ORDER BY clauses for precise querying.
+
+## Key Outcomes
+
+**This project enables businesses to:**
+⦁ Gain deeper insight into customer preferences and purchasing behaviors.
+
+⦁ Optimize inventory and resource management.
+
+⦁ Improve overall operational efficiency and profitability.
+
+## Technology Stack
+⦁ **Database Management System (DBMS):** SQL-based relational database.
+
+⦁ **Query Language:** SQL (Structured Query Language).
+
+## Future Enhancements
+⦁ Integration with visualization tools like Tableau or Power BI for graphical insights.
+
+⦁ Automation of queries for real-time reporting.
+
+⦁ Extension to include forecasting models using SQL and machine learning integration.
+
+## 
 This project serves as a comprehensive introduction to SQL for data analysts, covering database setup, data cleaning, exploratory data analysis, and business-driven SQL queries. The findings from this project can help drive business decisions by understanding sales patterns, customer behavior, and product performance.
 
+![Pizza Sales Analysis Project 🥗🍕 - visual selection](https://github.com/user-attachments/assets/8e0c92c9-afe9-4df1-88aa-f4dbaf91372a)
 
